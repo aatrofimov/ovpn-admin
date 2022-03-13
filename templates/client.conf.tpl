@@ -4,6 +4,7 @@ remote {{ $server.Host }} {{ $server.Port }} {{ $server.Protocol }}
 
 verb 4
 client
+explicit-exit-notify
 nobind
 dev tun
 cipher AES-128-CBC
@@ -11,6 +12,9 @@ key-direction 1
 #redirect-gateway def1
 tls-client
 remote-cert-tls server
+ignore-unknown-option block-outside-dns
+setenv opt block-outside-dns # Prevent Windows 10 DNS leak
+
 # uncomment below lines for use with linux
 #script-security 2
 # if you use resolved
