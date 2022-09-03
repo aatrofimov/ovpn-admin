@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+SAVE_PATH="${1:-.}"
 
 docker build . --iidfile iiffile
 
 image_id=$(cat iiffile)
+SAVE_PATH="${1:-./}"
 DIR1=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c10)
 DIR2=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c10)
 
@@ -23,6 +25,6 @@ cd ..
 
 rm "$DIR1" -rf
 
-cp "$DIR2"/app/ovpn-admin ovpn-admin
+cp "$DIR2"/app/ovpn-admin "$SAVE_PATH"/ovpn-admin
 
 rm "$DIR2" -rf
